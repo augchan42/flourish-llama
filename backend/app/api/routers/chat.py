@@ -3,7 +3,7 @@ from typing import List
 from fastapi.responses import StreamingResponse
 from llama_index.chat_engine.types import BaseChatEngine
 
-from app.engine import get_chat_engine
+from app.engine import get_agent
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from llama_index.llms.base import ChatMessage
 from llama_index.llms.types import MessageRole
@@ -25,7 +25,7 @@ class _ChatData(BaseModel):
 async def chat(
     request: Request,
     data: _ChatData,
-    chat_engine: BaseChatEngine = Depends(get_chat_engine),
+    chat_engine: BaseChatEngine = Depends(get_agent),
 ):
     # check preconditions and get last message
     if len(data.messages) == 0:
