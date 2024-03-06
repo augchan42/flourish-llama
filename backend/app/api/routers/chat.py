@@ -3,7 +3,7 @@ from typing import List
 from fastapi.responses import StreamingResponse
 from llama_index.chat_engine.types import BaseChatEngine
 
-from app.engine import get_agent
+from app.engine import get_agent, get_router
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from llama_index.llms.base import ChatMessage
 from llama_index.llms.types import MessageRole
@@ -52,8 +52,8 @@ async def chat(
     response = await chat_engine.astream_chat(lastMessage.content, messages)
 
     # stream response
-    async def event_generator():
-        async for token in response.async_response_gen():
+    async def event_generator():                
+        async for token in response.async_response_gen():            
             # If client closes connection, stop sending events
             if await request.is_disconnected():
                 break
