@@ -18,7 +18,7 @@ def get_tools():
         QueryEngineTool(
             query_engine=chat_chunk,
             metadata=ToolMetadata(
-                name="Flourish broken into Chunks",
+                name="FlourishChunks",
                 description=(
                     "Ask questions about the book Flourish, broken up into 1024 byte chunks. "
                     "Supports Dense Retrieval and Semantic search"
@@ -28,7 +28,7 @@ def get_tools():
         QueryEngineTool(
             query_engine=chat_summary,
             metadata=ToolMetadata(
-                name="Flourish Summarized",
+                name="FlourishSummarized",
                 description=(
                     "Contains summary information about the book Flourish"
                     "Good at answering broad questions about the book that requires synthesis across multiple chapters"
@@ -40,7 +40,7 @@ def get_tools():
     return query_engine_tools
 
 def get_agent():
-    llm = OpenAI(model="gpt-3.5-turbo-0613", chat_mode="condense_plus_context")
+    llm = OpenAI(model="gpt-3.5-turbo-0613", chat_mode="react")
 
     agent = ReActAgent.from_tools(
         get_tools(),
