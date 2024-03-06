@@ -1,0 +1,14 @@
+# Set the default behavior, in case users don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files that should use CRLF
+*.txt text eol=crlf
+
+# Declare files that will always have LF line endings on checkout.
+*.sh text eol=lf
+
+# Declare binary files - these should not be modified.
+*.jpg binary
+*.png binary
+*.pdf binary
+*.docx binary
